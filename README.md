@@ -1,5 +1,5 @@
 # coil_generation
-coil_generation※工事中
+coil_generation
 ====
 coil_generationは、coil式学習法を利用した英単語学習問題を自動生成するものである。
 
@@ -21,22 +21,57 @@ coil_generationは、coil式学習法を利用した英単語学習問題を自�
 ```
     mt18a006@oecu.jp
 ```
-
-### 研究内容
+### 準備するもの
+* words.json
 ```
-    英単語の学習法として、coil（Combination Of Initial Letters）式学習法を利用したweb学習システムの開発を行う。
-    この学習法は、米津　博志さんが考案した学習法で学習本が出版されている。
-    しかし、この学習本は、難易度の幅の大きさ、手作業による問題生成による問題数の少なさなどの問題点がある。
-    coil_appでは、この学習法を計算機を使用することによって問題の自動生成及び難易度の詳細化を図り、手軽に学習できるよう様々な機能を実装したwebシステムとして開発を行う。
+//内容例
+[
+    {
+        "eng": "athlete",
+        "jpn": "運動選手",
+        "lv": [
+            {
+                "lable": "レベル",
+                "content": "4"
+            },
+            {
+                "lable": "英検",
+                "content": "2級以上の単語"
+            },
+            {
+                "lable": "学校レベル",
+                "content": "高校3年以上の水準"
+            },
+            {
+                "lable": "TOEICスコア",
+                "content": "470点以上の単語"
+            },
+            {
+                "lable": "大学入試",
+                "content": "難関大対策レベル"
+            }
+        ],
+        "kategori": "スポーツ",
+        "sentence": {
+            "en": "I think that he is an amazing athlete.",
+            "jp": "彼はすごい選手だと思います。"
+        },
+        "imgURL": "https://cdn.pixabay.com/photo/2014/12/20/09/18/running-573762_960_720.jpg"
+    },
+    .
+    .
+    .
+]
 ```
-
-
-## Requirement
-
-## Usage
-
-
+* 難易度(内容例での lv に当たる部分)はweblioが定めているものを利用する
+* カテゴリ(内容例での kategori に当たる部分)はJUMAN が定めているものを利用する
+* 内容例での sentence に当たる部分は単語を使用した例文を指す
+* 内容例での imgURL に当たる部分は、その単語から連想される画像のURLを指す
+    * 例では pixabay から取得しているものを利用
 ## 生成方法
 ```
-   mingw上でallrun.shを実行する
+   1. words.jsonをdatasetディレクトリに置く
+   2. mingw上でbash allrun.shを実行する
+   3. 実行が終了した後に、bash format.shを実行
+   4. 実行が終了したらjsonディレクトリにcoils.jsonが生成されている
 ```
